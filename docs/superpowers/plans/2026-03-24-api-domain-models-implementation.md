@@ -27,7 +27,6 @@ src/main/kotlin/org/example/
 └── domain/
     ├── model/
     │   ├── Store.kt (create)
-    │   ├── StoreType.kt (create)
     │   ├── TSType.kt (create)
     │   └── StringId.kt (create)
     └── usecase/
@@ -76,21 +75,10 @@ git commit -m "feat: setup kotlinx.serialization plugin and dependency"
 ## Task 2: Создание Domain моделей (Enums и Value Object)
 
 **Files:**
-- Create: `src/main/kotlin/org/example/domain/model/StoreType.kt`
 - Create: `src/main/kotlin/org/example/domain/model/TSType.kt`
 - Create: `src/main/kotlin/org/example/domain/model/StringId.kt`
 
-- [ ] **Step 1: Создать StoreType enum**
-
-```kotlin
-package org.example.domain.model
-
-enum class StoreType {
-    TSX, TS5, TSH
-}
-```
-
-- [ ] **Step 2: Создать TSType enum**
+- [ ] **Step 1: Создать TSType enum**
 
 ```kotlin
 package org.example.domain.model
@@ -100,7 +88,7 @@ enum class TSType {
 }
 ```
 
-- [ ] **Step 3: Создать StringId value object**
+- [ ] **Step 2: Создать StringId value object**
 
 ```kotlin
 package org.example.domain.model
@@ -109,16 +97,16 @@ package org.example.domain.model
 value class StringId(val value: String)
 ```
 
-- [ ] **Step 4: Проверить сборку**
+- [ ] **Step 3: Проверить сборку**
 
 Run: `./gradlew build`
-Expected: SUCCESS —
+Expected: SUCCESS -
 
-- [ ] **Step 5: Commit**
+- [ ] **Step 4: Commit**
 
 ```bash
 git add src/main/kotlin/org/example/domain/model/
-git commit -m "feat: add domain value objects (StoreType, TSType, StringId)"
+git commit -m "feat: add domain value objects (TSType, StringId)"
 ```
 
 ---
@@ -136,7 +124,6 @@ package org.example.domain.model
 data class Store(
     val id: StringId,
     val name: String,
-    val type: StoreType,
     val address: String,
     val ts: TSType
 )
@@ -176,9 +163,6 @@ data class StoreResponse(
 
     @SerialName("storeName")
     val storeName: String,
-
-    @SerialName("storeType")
-    val storeType: String,
 
     @SerialName("address")
     val address: String,
@@ -220,21 +204,18 @@ object MockApi {
             StoreResponse(
                 storeId = "store-001",
                 storeName = "Пятерочка - Тверская",
-                storeType = "TSX",
                 address = "г. Москва, ул. Тверская, 1",
                 ts = "TSX"
             ),
             StoreResponse(
                 storeId = "store-002",
                 storeName = "Перекресток - Арбат",
-                storeType = "TS5",
                 address = "г. Москва, ул. Арбат, 5",
                 ts = "TS5"
             ),
             StoreResponse(
                 storeId = "store-003",
                 storeName = "Чижик - Садовая",
-                storeType = "TSH",
                 address = "г. Москва, ул. Садовая, 3",
                 ts = "TSC"
             )
@@ -270,7 +251,6 @@ package org.example.api.mapper
 import org.example.api.model.StoreResponse
 import org.example.domain.model.Store
 import org.example.domain.model.StringId
-import org.example.domain.model.StoreType
 import org.example.domain.model.TSType
 
 class StoreMapper {
@@ -279,7 +259,6 @@ class StoreMapper {
         return Store(
             id = StringId(api.storeId),
             name = api.storeName,
-            type = StoreType.valueOf(api.storeType),
             address = api.address,
             ts = TSType.valueOf(api.ts)
         )
@@ -401,7 +380,6 @@ fun main() {
     stores.forEach { store ->
         println("ID: ${store.id.value}")
         println("Название: ${store.name}")
-        println("Тип: ${store.type}")
         println("Адрес: ${store.address}")
         println("ТС: ${store.ts}")
         println()
@@ -421,19 +399,16 @@ Expected: SUCCESS - выводится список магазинов с пра
 
 ID: store-001
 Название: Пятерочка - Тверская
-Тип: TSX
 Адрес: г. Москва, ул. Тверская, 1
 ТС: TSX
 
 ID: store-002
 Название: Перекресток - Арбат
-Тип: TS5
 Адрес: г. Москва, ул. Арбат, 5
 ТС: TS5
 
 ID: store-003
 Название: Чижик - Садовая
-Тип: TSH
 Адрес: г. Москва, ул. Садовая, 3
 ТС: TSC
 
