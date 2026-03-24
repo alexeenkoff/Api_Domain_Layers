@@ -1,6 +1,6 @@
-package org.example
+package ru.x5.stores
 
-import org.example.domain.usecase.StoresUsecase
+import ru.x5.stores.domain.usecase.StoresUsecase
 
 fun main() {
     val usecase = StoresUsecase()
