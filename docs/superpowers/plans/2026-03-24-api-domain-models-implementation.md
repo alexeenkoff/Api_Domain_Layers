@@ -40,7 +40,7 @@ src/main/kotlin/org/example/
 **Files:**
 - Modify: `build.gradle.kts`
 
-- [ ] **Step 1: Добавить плагин kotlinx.serialization**
+- [x] **Step 1: Добавить плагин kotlinx.serialization**
 
 ```kotlin
 plugins {
@@ -49,7 +49,7 @@ plugins {
 }
 ```
 
-- [ ] **Step 2: Добавить зависимость kotlinx-serialization-json**
+- [x] **Step 2: Добавить зависимость kotlinx-serialization-json**
 
 ```kotlin
 dependencies {
@@ -58,12 +58,12 @@ dependencies {
 }
 ```
 
-- [ ] **Step 3: Синхронизировать Gradle**
+- [x] **Step 3: Синхронизировать Gradle**
 
 Run: `./gradlew build`
 Expected: SUCCESS — проект собирается без ошибок
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add build.gradle.kts
@@ -78,7 +78,7 @@ git commit -m "feat: setup kotlinx.serialization plugin and dependency"
 - Create: `src/main/kotlin/org/example/domain/model/TSType.kt`
 - Create: `src/main/kotlin/org/example/domain/model/StringId.kt`
 
-- [ ] **Step 1: Создать TSType enum**
+- [x] **Step 1: Создать TSType enum**
 
 ```kotlin
 package org.example.domain.model
@@ -88,7 +88,7 @@ enum class TSType {
 }
 ```
 
-- [ ] **Step 2: Создать StringId value object**
+- [x] **Step 2: Создать StringId value object**
 
 ```kotlin
 package org.example.domain.model
@@ -97,12 +97,12 @@ package org.example.domain.model
 value class StringId(val value: String)
 ```
 
-- [ ] **Step 3: Проверить сборку**
+- [x] **Step 3: Проверить сборку**
 
 Run: `./gradlew build`
 Expected: SUCCESS -
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add src/main/kotlin/org/example/domain/model/
@@ -116,7 +116,7 @@ git commit -m "feat: add domain value objects (TSType, StringId)"
 **Files:**
 - Create: `src/main/kotlin/org/example/domain/model/Store.kt`
 
-- [ ] **Step 1: Создать Store data class**
+- [x] **Step 1: Создать Store data class**
 
 ```kotlin
 package org.example.domain.model
@@ -148,7 +148,7 @@ git commit -m "feat: add Store domain model"
 **Files:**
 - Create: `src/main/kotlin/org/example/api/model/StoreResponse.kt`
 
-- [ ] **Step 1: Создать StoreResponse с @Serializable**
+- [x] **Step 1: Создать StoreResponse с @Serializable**
 
 ```kotlin
 package org.example.api.model
@@ -167,17 +167,17 @@ data class StoreResponse(
     @SerialName("address")
     val address: String,
 
-    @SerialName("ts")
+@SerialName("ts")
     val ts: String
 )
 ```
 
-- [ ] **Step 2: Проверить сборку**
+- [x] **Step 2: Проверить сборку**
 
 Run: `./gradlew build`
 Expected: SUCCESS - плагин serialization генерирует код
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add src/main/kotlin/org/example/api/model/StoreResponse.kt
@@ -191,7 +191,7 @@ git commit -m "feat: add StoreResponse API model with @Serializable"
 **Files:**
 - Create: `src/main/kotlin/org/example/api/mocks/MockApi.kt`
 
-- [ ] **Step 1: Создать MockApi с mock данными**
+- [x] **Step 1: Создать MockApi с mock данными**
 
 ```kotlin
 package org.example.api.mocks
@@ -199,37 +199,36 @@ package org.example.api.mocks
 import org.example.api.model.StoreResponse
 
 object MockApi {
-    fun getStores(): List<StoreResponse> {
-        return listOf(
+    fun getStores(): List<StoreResponse> =
+        listOf(
             StoreResponse(
                 storeId = "store-001",
                 storeName = "Пятерочка - Тверская",
                 address = "г. Москва, ул. Тверская, 1",
-                ts = "TSX"
+                ts = "TSX",
             ),
             StoreResponse(
                 storeId = "store-002",
                 storeName = "Перекресток - Арбат",
                 address = "г. Москва, ул. Арбат, 5",
-                ts = "TS5"
+                ts = "TS5",
             ),
             StoreResponse(
                 storeId = "store-003",
                 storeName = "Чижик - Садовая",
                 address = "г. Москва, ул. Садовая, 3",
-                ts = "TSC"
-            )
+                ts = "TSC",
+            ),
         )
-    }
 }
 ```
 
-- [ ] **Step 2: Проверить сборку**
+- [x] **Step 2: Проверить сборку**
 
 Run: `./gradlew build`
 Expected: SUCCESS -
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add src/main/kotlin/org/example/api/mocks/MockApi.kt
@@ -243,7 +242,7 @@ git commit -m "feat: add MockApi with mock store data"
 **Files:**
 - Create: `src/main/kotlin/org/example/api/mapper/StoreMapper.kt`
 
-- [ ] **Step 1: Создать StoreMapper с маппингом**
+- [x] **Step 1: Создать StoreMapper с маппингом**
 
 ```kotlin
 package org.example.api.mapper
@@ -270,12 +269,12 @@ class StoreMapper {
 }
 ```
 
-- [ ] **Step 2: Проверить сборку**
+- [x] **Step 2: Проверить сборку**
 
 Run: `./gradlew build`
 Expected: SUCCESS -
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add src/main/kotlin/org/example/api/mapper/StoreMapper.kt
@@ -289,7 +288,7 @@ git commit -m "feat: add StoreMapper for API to Domain conversion"
 **Files:**
 - Create: `src/main/kotlin/org/example/api/repository/StoresRepository.kt`
 
-- [ ] **Step 1: Создать StoresRepository с mapper**
+- [x] **Step 1: Создать StoresRepository с mapper**
 
 ```kotlin
 package org.example.api.repository
@@ -309,12 +308,12 @@ class StoresRepository(
 }
 ```
 
-- [ ] **Step 2: Проверить сборку**
+- [x] **Step 2: Проверить сборку**
 
 Run: `./gradlew build`
 Expected: SUCCESS -
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add src/main/kotlin/org/example/api/repository/StoresRepository.kt
@@ -328,7 +327,7 @@ git commit -m "feat: add StoresRepository with mock API and mapper"
 **Files:**
 - Create: `src/main/kotlin/org/example/domain/usecase/StoresUsecase.kt`
 
-- [ ] **Step 1: Создать StoresUsecase**
+- [x] **Step 1: Создать StoresUsecase**
 
 ```kotlin
 package org.example.domain.usecase
@@ -345,12 +344,12 @@ class StoresUsecase(
 }
 ```
 
-- [ ] **Step 2: Проверить сборку**
+- [x] **Step 2: Проверить сборку**
 
 Run: `./gradlew build`
 Expected: SUCCESS -
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add src/main/kotlin/org/example/domain/usecase/StoresUsecase.kt
@@ -364,7 +363,7 @@ git commit -m "feat: add StoresUsecase for business logic orchestration"
 **Files:**
 - Modify: `src/main/kotlin/org/example/Main.kt`
 
-- [ ] **Step 1: Заменить содержимое Main.kt**
+- [x] **Step 1: Заменить содержимое Main.kt**
 
 ```kotlin
 package org.example
@@ -389,7 +388,7 @@ fun main() {
 }
 ```
 
-- [ ] **Step 2: Запустить приложение**
+- [x] **Step 2: Запустить приложение**
 
 Run: `./gradlew run`
 Expected: SUCCESS - выводится список магазинов с правильными типами
@@ -415,7 +414,7 @@ ID: store-003
 Всего магазинов: 3
 ```
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add src/main/kotlin/org/example/Main.kt
