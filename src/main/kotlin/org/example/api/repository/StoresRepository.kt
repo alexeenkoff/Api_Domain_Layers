@@ -1,8 +1,8 @@
-package org.example.api.repository
+package ru.x5.stores.api.repository
 
-import org.example.api.mapper.StoreMapper
-import org.example.api.mocks.MockApi
-import org.example.domain.model.Store
+import ru.x5.stores.api.mapper.StoreMapper
+import ru.x5.stores.api.mocks.MockApi
+import ru.x5.stores.domain.model.Store
 
 class StoresRepository(
     private val mockApi: MockApi = MockApi,

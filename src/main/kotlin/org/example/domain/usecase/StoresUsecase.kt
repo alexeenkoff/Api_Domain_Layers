@@ -1,7 +1,7 @@
-package org.example.domain.usecase
+package ru.x5.stores.domain.usecase
 
-import org.example.api.repository.StoresRepository
-import org.example.domain.model.Store
+import ru.x5.stores.api.repository.StoresRepository
+import ru.x5.stores.domain.model.Store
 
 class StoresUsecase(
     private val repository: StoresRepository = StoresRepository(),

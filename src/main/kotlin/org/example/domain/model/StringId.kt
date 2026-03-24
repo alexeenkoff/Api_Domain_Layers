@@ -1,4 +1,4 @@
-package org.example.domain.model
+package ru.x5.stores.domain.model
 
 @JvmInline
 value class StringId(

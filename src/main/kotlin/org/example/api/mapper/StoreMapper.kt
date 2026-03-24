@@ -1,9 +1,9 @@
-package org.example.api.mapper
+package ru.x5.stores.api.mapper
 
-import org.example.api.model.StoreResponse
-import org.example.domain.model.Store
-import org.example.domain.model.StringId
-import org.example.domain.model.TSType
+import ru.x5.stores.api.model.StoreResponse
+import ru.x5.stores.domain.model.Store
+import ru.x5.stores.domain.model.StringId
+import ru.x5.stores.domain.model.TSType
 
 class StoreMapper {
     fun toDomain(api: StoreResponse): Store =

@@ -1,6 +1,6 @@
-package org.example.api.mocks
+package ru.x5.stores.api.mocks
 
-import org.example.api.model.StoreResponse
+import ru.x5.stores.api.model.StoreResponse
 
 object MockApi {
     fun getStores(): List<StoreResponse> =
