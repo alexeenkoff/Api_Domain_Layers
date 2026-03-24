@@ -11,9 +11,6 @@ data class StoreResponse(
     @SerialName("storeName")
     val storeName: String,
 
-    @SerialName("storeType")
-    val storeType: String,
-
     @SerialName("address")
     val address: String,
 

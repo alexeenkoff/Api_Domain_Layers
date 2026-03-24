@@ -11,7 +11,6 @@ fun main() {
     stores.forEach { store ->
         println("ID: ${store.id.value}")
         println("Название: ${store.name}")
-        println("Тип: ${store.type}")
         println("Адрес: ${store.address}")
         println("ТС: ${store.ts}")
         println()
